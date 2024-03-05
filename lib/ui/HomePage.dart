@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:offline_phone_book/ui/CreateContactPage.dart';
+import 'package:offline_phone_book/ui/SearchPage.dart';
 import 'package:offline_phone_book/utils/database.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -41,15 +43,42 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        title: Text(
-          widget.title,
-          style: const TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
+        actions: [
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const SearchPage();
+                  },
+                ),
+              ).then((value) {
+                _refreshData();
+              });
+            },
+            child: const Icon(
+              Icons.search,
+              color: Colors.black,
+            ),
           ),
+          const SizedBox(width: 16),
+        ],
+        centerTitle: false,
+        backgroundColor: Colors.white,
+        title: Row(
+          children: [
+            SizedBox(width: 3),
+            Text(
+              widget.title,
+              style: const TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
       ),
       body: _isLoading

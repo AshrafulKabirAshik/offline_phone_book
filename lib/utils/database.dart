@@ -36,6 +36,11 @@ class SQLHelper {
     return db.query('data', where: "id = ?", whereArgs: [id], limit: 1);
   }
 
+  static Future<List<Map<String, dynamic>>> searchByName(String name) async {
+    final db = await SQLHelper.db();
+    return db.query('data', where: "name = ?", whereArgs: [name]);
+  }
+
   static Future<int> updateData(
       int id, String name, String phone, String email) async {
     final db = await SQLHelper.db();
