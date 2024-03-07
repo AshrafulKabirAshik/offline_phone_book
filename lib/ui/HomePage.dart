@@ -45,6 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        surfaceTintColor: Colors.transparent,
         actions: [
           GestureDetector(
             onTap: () {
@@ -86,6 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: CircularProgressIndicator(),
             )
           : ListView.builder(
+              padding: const EdgeInsets.only(bottom: 100),
               itemCount: _allData.length,
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),

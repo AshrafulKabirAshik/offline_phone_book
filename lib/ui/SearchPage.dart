@@ -59,7 +59,9 @@ class _SearchPageState extends State<SearchPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+        backgroundColor: CupertinoColors.extraLightBackgroundGray,
+        surfaceTintColor: Colors.transparent,
         title: TextField(
           keyboardType: TextInputType.text,
           controller: _nameController,
@@ -69,21 +71,29 @@ class _SearchPageState extends State<SearchPage> {
           cursorColor: Colors.black,
           obscureText: false,
           decoration: InputDecoration(
+            prefixIcon: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
             suffixIcon: IconButton(
               onPressed: _nameController.clear,
-              icon: Icon(Icons.clear),
+              icon: const Icon(Icons.clear),
             ),
             //labelText: 'Name',
             hintText: 'Search By Name',
-            hintStyle: TextStyle(color: Colors.black26),
+            hintStyle: const TextStyle(
+                color: Colors.black26, fontWeight: FontWeight.w900),
             //helperText: 'Username : bigm',
-            filled: true,
+            filled: false,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
           ),
         ),
       ),
       body: ListView.builder(
+        padding: const EdgeInsets.only(top: 10, bottom: 20),
         itemCount: _allData.length,
         itemBuilder: (context, index) => Padding(
           padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
